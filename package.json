@@ -1,6 +1,6 @@
 {
   "name": "sql-promise",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "common sql-promise behavior",
   "main": "bin/sql-promise.js",
   "scripts": {
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "https://github.com/codenautas/sql-promise.git"
   },
-  "author": "",
+  "author": "Codenautas <codenautas@googlegroups.com>",
+  "contributors": [{
+    "name": "Emilio Platzer", "email": "emilioplatzer@gmail.com"
+  },{
+    "name": "Diego Florio", "email": "diegoefe@gmail.com"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/codenautas/sql-promise/issues"
