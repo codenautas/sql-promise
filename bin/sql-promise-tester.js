@@ -44,6 +44,9 @@ sqlPromiseTester.test = function(motor, opts){
                 done();
             });
         });
+        if(opts.testUntil=='connect'){
+            return;
+        }
         describe('connectected tests', function(done){
             var conn;
             before(function(done){
