@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/codenautas/sql-promise/issues"
   },
-  "homepage": "https://github.com/codenautas/sql-promise"
+  "homepage": "https://github.com/codenautas/sql-promise",
+   "devDependencies": {
+    "expect.js": "^0.3.1"
+  }
 }
