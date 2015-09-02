@@ -27,7 +27,8 @@ sqlPromiseTester.test = function(motor, opts){
             expect('defaultPort' in motor).to.be.ok();
         });
         it('connect', function(done){
-            motor.connect(opts.connOpts||defaultConnOpts).then(function(){
+            motor.connect(opts.connOpts||defaultConnOpts).then(function(connection){
+                connection.done();
                 done();
             }).catch(done);
         });
@@ -50,10 +51,14 @@ sqlPromiseTester.test = function(motor, opts){
         describe('connectected tests', function(done){
             var conn;
             before(function(done){
-                motor.connect(opts.badConnOpts||defaultConnOpts).then(function(obtainedConn){
+                motor.connect(opts.connOpts||defaultConnOpts).then(function(obtainedConn){
                     conn=obtainedConn;
                     done();
                 }).catch(done);
+            });
+            before(function(done){
+                conn.done();
+                done();
             });
             it('must create table',function(done){
                 var cursor=conn.query("CREATE TABLE example1(id integer primary key, datum text)");
@@ -62,7 +67,25 @@ sqlPromiseTester.test = function(motor, opts){
                     console.log('result',result);
                     done();
                 }).catch(done);
-            })
+            });
+            it('must insert data',function(done){
+                var cursor=conn.query(
+                    "INSERT INTO example1 VALUES (1, 'one')"
+                ).execute().then(function(result){
+                    console.log('result',result);
+                    expect(result.rowCount).to.be(1);
+                    done();
+                }).catch(done);
+            });
+            it('must select data',function(done){
+                var cursor=conn.query(
+                    "SELECT * FROM example1"
+                ).fetchAll().then(function(result){
+                    console.log('result',result);
+                    expect(result.rows).to.eql([{id:1, datum:'one'}]);
+                    done();
+                }).catch(done);
+            });
         });
     });
 };
