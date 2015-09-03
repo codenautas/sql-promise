@@ -5,6 +5,10 @@
 
 var sqlPromise = {};
 
-sqlPromise.tester = require('./sql-promise-tester.js');
+sqlPromise.allowAccessInternalIfDebugging = function allowAccessInternalIfDebugging(self, internals){
+    if(this.debug[self.constructor.name]){
+        self.internals = internals;
+    }
+};
 
 module.exports = sqlPromise;
