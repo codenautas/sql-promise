@@ -14,7 +14,6 @@ sqlPromise.Connection = function Connection(connOpts, connection, done, motor){
     var assignFunctionsPostConnect = function assignFunctionsPostConnect(){
         // existing functions
         self.done = function(){
-            console.log('Connection.done',motor.motorName,!!motor.debug.pool);
             if(motor.debug.pool){
                 motor.debug.pool[connection.secretKey].count--;
             }
