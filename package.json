@@ -1,6 +1,6 @@
 {
   "name": "sql-promise",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "common sql-promise behavior",
   "main": "bin/sql-promise.js",
   "scripts": {
@@ -21,6 +21,9 @@
     "url": "https://github.com/codenautas/sql-promise/issues"
   },
   "homepage": "https://github.com/codenautas/sql-promise",
+  "dependencies": {
+    "best-promise": "0.2.3"
+  },
   "devDependencies": {
     "expect.js": "^0.3.1"
   }
