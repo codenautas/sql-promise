@@ -106,6 +106,44 @@ sqlPromise.Query = function Query(query, connection){
     }
 };
 
+sqlPromise.buildQueryCounterAdapter = function buildQueryCounterAdapter(minCountRow, maxCountRow, expectText, callbackOtherControl){
+    return function queryCounterAdapter(result, resolve, reject){ 
+        if(result.rows.length<minCountRow || result.rows.length>maxCountRow ){
+            var err=new Error('query expects '+expectText+' and obtains '+result.rows.length+' rows');
+            err.code='54011!';
+            reject(err);
+        }else{
+            if(callbackOtherControl){
+                callbackOtherControl(result, resolve, reject);
+            }else{
+                result.row = result.rows[0];
+                delete result.rows;
+                resolve(result);
+            }
+        }
+    };
+}
+
+sqlPromise.queryAdapters = {
+    normal: function normalQueryAdapter(result, resolve/*, reject*/){ 
+        resolve(result);
+    },
+    upto1:sqlPromise.buildQueryCounterAdapter(0,1,'up to one row'),
+    row:sqlPromise.buildQueryCounterAdapter(1,1,'one row'),
+    value:sqlPromise.buildQueryCounterAdapter(1,1,'one row (with one field)',function(result, resolve, reject){
+        if(result.fields.length!==1){
+            var err=new Error('query expects one field and obtains '+result.fields.length);
+            err.code='54U11!';
+            reject(err);
+        }else{
+            var row = result.rows[0];
+            result.value = row[result.fields[0].name];
+            delete result.rows;
+            resolve(result);
+        }
+    })
+};
+
 sqlPromise.allowAccessInternalIfDebugging = function allowAccessInternalIfDebugging(self, internals){
     if(this.debug[self.constructor.name]){
         self.internals = internals;
