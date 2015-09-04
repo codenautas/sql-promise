@@ -55,11 +55,11 @@ sqlPromise.Connection = function Connection(connOpts, connection, done, motor){
     assignFunctionsPostConnect();
 };
 
-sqlPromise.Query = function Query(query, client){
+sqlPromise.Query = function Query(query, connection){
     var self = this;
-    client.motor.allowAccessInternalIfDebugging(self, {query: query, client:client});
+    connection.motor.allowAccessInternalIfDebugging(self, {query: query, connection:connection});
     this.execute = function execute(callbackForEachRow, adapterName){
-        // client.motor.log('Query.execute');
+        // connection.motor.log('Query.execute');
         if(callbackForEachRow && !(callbackForEachRow instanceof Function)){
             if(adapterName){
                 return Promises.reject(new Error("Query.execute() must recive optional callback function and optional adapterName"));
@@ -67,25 +67,15 @@ sqlPromise.Query = function Query(query, client){
             adapterName=callbackForEachRow;
             callbackForEachRow=null;
         }
-        var adapter = client.motor.queryAdapters[adapterName||'normal'];
-        return Promises.make(function(resolve, reject){
-            query.on('error',function(err){
-                reject(err);
-            });
-            query.on('row',function(row, result){
-                if(callbackForEachRow){
-                    callbackForEachRow(row, result);
-                }else{
-                    result.addRow(row);
-                }
-            });
-            query.on('end',function(result){
-                result.client = client;
-                if(client.motor.log){
-                    client.motor.log('-- '+JSON.stringify(result.rows));
+        var adapter = connection.motor.queryAdapters[adapterName||'normal'];
+        return connection.motor.makePromiseFetcher(query, callbackForEachRow, function(resolve,reject){
+            return function(result){
+                result.connection = connection;
+                if(connection.motor.log){
+                    connection.motor.log('-- '+JSON.stringify(result.rows));
                 }
                 adapter(result, resolve, reject);
-            });
+            }
         });
     };
     // new functions
@@ -94,7 +84,7 @@ sqlPromise.Query = function Query(query, client){
     this.fetchUniqueValue    = this.execute.bind(this,'value');
     this.fetchAll            = this.execute.bind(this,'normal');
     this.fetchRowByRow       = function fetchRowByRow(callback){
-        // client.motor.log('Query.onRow');
+        // connection.motor.log('Query.onRow');
         if(!(callback instanceof Function)){
             var err=new Error('fetchRowByRow must recive a callback that executes for each row');
             err.code='39004!';
@@ -107,7 +97,7 @@ sqlPromise.Query = function Query(query, client){
      *   pg.Client.query is synchronic (not need to recive a callback function) then not need to return a Promise
      *   but pg-promise-strict always returns a "theneable". Then "then" is here. 
      */
-    if(client.motor.easy){
+    if(connection.motor.easy){
         this.then = function then(callback,callbackE){
             delete this.then;
             delete this.catch;
