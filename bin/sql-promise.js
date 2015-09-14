@@ -8,7 +8,7 @@ var sqlPromise = {};
 var Promises = require('best-promise');
 
 function OpaqueObject() {
-    this.internalState = null;
+    this.internalState = {};
 };
 
 sqlPromise.DbConnection = function DbConnection() {
