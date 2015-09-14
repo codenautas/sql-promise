@@ -11,23 +11,23 @@ function OpaqueObject() {
     this.internalState = null;
 };
 
-function DbConnection() {
+sqlPromise.DbConnection = function DbConnection() {
     OpaqueObject.call(this);
 };
 
-function DbPreparedQuery() {
+sqlPromise.DbPreparedQuery = function DbPreparedQuery() {
     OpaqueObject.call(this);
 };
 
-function DbQuery() {
+sqlPromise.DbQuery = function DbQuery() {
     OpaqueObject.call(this);
 }
 
-function DbResult() {
+sqlPromise.DbResult = function DbResult() {
     OpaqueObject.call(this);
 }
 
-function Motor() {
+sqlPromise.Motor = function Motor() {
     this.connect=function(params) {
         return Promises.reject("Motor.connect() should return a DbConnection");
     };
@@ -42,12 +42,7 @@ function Motor() {
     };
 };
 
-var motor = new Motor;
-motor.connect().then(function(con) {
-   console.log("connected"); 
-}).catch(function(e) {
-   console.log("Err", e);
-});
+
 //console.log(new DbQuery().internalState);
 
 // sqlPromise.motorName = 'generic';
