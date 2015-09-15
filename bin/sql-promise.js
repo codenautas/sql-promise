@@ -62,8 +62,8 @@ sqlPromise.Motor = function Motor() {
     this.query=function(preparedQuery, data) {
         return Promises.reject("Motor.prepare() should return a DbQuery");
     };
-    this.fetchRowByRow=function(query, callbackRowByRow) {
-        return Promises.reject("Motor.fetchRowByRow() should return a DbResult");
+    this.fetchAll=function(query) {
+        return Promises.reject("Motor.fetchAll() should return a DbResult");
     };
 };
 

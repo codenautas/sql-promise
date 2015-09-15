@@ -70,7 +70,7 @@ describe('sql-promise interface tests', function(){
             return motor.query(); 
         }).catch(function(err) {
             expect(err).to.match(/should return a DbQuery/);
-            return motor.fetchRowByRow(); 
+            return motor.fetchAll(); 
         }).then(function() {
             done("Should not success");
         }).catch(function(err) {
