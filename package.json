@@ -23,12 +23,14 @@
   "homepage": "https://github.com/codenautas/sql-promise",
   "dependencies": {
     "promise": "7.0.4",
-    "best-promise": "0.2.3"
+    
+    "best-promise": "0.2.4"
   },
   "devDependencies": {
-    "istanbul": "~0.3.18",
-    "mocha": "~2.2.5",
-    "expect.js": ">=0.3.1"
+    "expect.js": "0.3.1",
+    "istanbul": "0.3.20",
+    "mocha": "2.3.2",
+    "sinon": "1.16.1"
   },
   "scripts": {
     "test": "mocha --reporter spec --bail --check-leaks test/",
