@@ -30,6 +30,9 @@ sqlPromise.Connection = function Connection(sqlLib, internal, motor) {
             return new sqlLib.PreparedQuery(sqlLib, internalPreparedQuery, motor);
         });
     }
+    this.done = function done(){
+        return motor.done(internal);
+    }
     // shortcuts:
     this.query = function query(sqlSentence, data){
         return this.prepare(sqlSentence).then(function(preparedQuery){
