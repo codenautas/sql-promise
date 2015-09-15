@@ -52,27 +52,6 @@ sqlPromise.Query = function Query(sqlLib, internal, motor) {
     }
 };
 
-
-function OpaqueObject() {
-    this.internalState = {};
-};
-
-sqlPromise.DbConnection = function DbConnection() {
-    OpaqueObject.call(this);
-};
-
-sqlPromise.DbPreparedQuery = function DbPreparedQuery() {
-    OpaqueObject.call(this);
-};
-
-sqlPromise.DbQuery = function DbQuery() {
-    OpaqueObject.call(this);
-}
-
-sqlPromise.DbResult = function DbResult() {
-    OpaqueObject.call(this);
-}
-
 sqlPromise.Motor = function Motor() {
     this.connect=function(params) {
         return Promises.reject("Motor.connect() should return a DbConnection");
