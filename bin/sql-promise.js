@@ -74,6 +74,9 @@ sqlPromise.Motor = function Motor() {
     this.fetchAll=function(query) {
         return Promises.reject("Motor.fetchAll() should return a DbResult");
     };
+    this.done=function(query) {
+        return Promises.reject("Motor.done() should be defined");
+    };
 };
 
 module.exports = sqlPromise;

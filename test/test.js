@@ -71,6 +71,9 @@ describe('sql-promise interface tests', function(){
         }).catch(function(err) {
             expect(err).to.match(/should return a DbQuery/);
             return motor.fetchAll(); 
+        }).catch(function(err) {
+            expect(err).to.match(/should shold be defined/);
+            return motor.done();
         }).then(function() {
             done("Should not success");
         }).catch(function(err) {
