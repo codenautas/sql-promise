@@ -1,6 +1,6 @@
 {
   "name": "sql-promise",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "common sql-promise behavior",
   "main": "lib/sql-promise.js",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "native-promise-only": "0.8.1",
     
-    "promise-plus": "0.0.3"
+    "promise-plus": "0.0.6"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
