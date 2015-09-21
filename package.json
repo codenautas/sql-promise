@@ -1,6 +1,6 @@
 {
   "name": "sql-promise",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "common sql-promise behavior",
   "main": "lib/sql-promise.js",
   "scripts": {
