@@ -1,11 +1,8 @@
 {
   "name": "sql-promise",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "common sql-promise behavior",
   "main": "lib/sql-promise.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/codenautas/sql-promise.git"
