@@ -2,7 +2,7 @@
 
 var sqlPromise=require('..');
 var expect = require('expect.js');
-var Promises = require('best-promise');
+var Promises = require('promise-plus');
 var sinon = require('sinon');
 
 var mockConnectionInternal = {internal:'connnnnnn'};
