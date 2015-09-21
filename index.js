@@ -1,1 +1,1 @@
-module.exports = require('./bin/sql-promise.js');
+module.exports = require('./lib/sql-promise.js');
