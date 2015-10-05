@@ -5,7 +5,7 @@
   "main": "lib/sql-promise.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codenautas/sql-promise.git"
+    "url": "https://github.com/codenautas/sql-promise"
   },
   "author": "Codenautas <codenautas@googlegroups.com>",
   "contributors": [{
@@ -33,5 +33,16 @@
     "test": "mocha --reporter spec --bail --check-leaks test/",
     "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/"
+  },
+  "jshintConfig": {
+    "asi": false,
+    "curly": true,
+    "forin": true
+  },
+  "qa-control": {
+    "package-version": "0.0.1",
+    "run-in": "server",
+    "stability": "designing",
+    "type": "lib"
   }
 }
