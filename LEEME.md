@@ -1,10 +1,10 @@
 # sql-promise
 
 <!--lang:es-->
-sql con promise A+
+comportamiento común de sql-promise
 
 <!--lang:en--]
-sql with promise A+
+common sql-promise behavior
 
 [!--lang:*-->
 

@@ -1,6 +1,6 @@
 # sql-promise
 
-sql with promise A+
+common sql-promise behavior
 
 
 ![designing](https://img.shields.io/badge/stability-desgining-red.svg)
